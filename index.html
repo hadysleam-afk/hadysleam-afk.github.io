@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0B1120" />
+    <meta name="description" content="Hady Sleam, backend-focused full-stack developer. Web applications with real backend and database features." />
+    <meta name="author" content="Hady Sleam" />
+    
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hady Sleam | Backend Developer" />
+    <meta property="og:description" content="Backend-focused full-stack developer. Web applications with real backend and database features." />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hady Sleam | Backend Developer" />
+    <meta name="twitter:description" content="Backend-focused full-stack developer. Web applications with real backend and database features." />
+
+    <!-- Google Fonts: Inter & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <title>Hady Sleam | Backend Developer</title>
+    <style>
+      /* Prevent initial flash before CSS loads */
+      html, body {
+        background-color: #0B1120;
+        color: #F8FAFC;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      }
+      [dir="rtl"] body {
+        font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Register Service Worker for PWA
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.log('SW registration skipped or failed:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
