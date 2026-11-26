@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { motionReduced } from "../lib/motion";
 import { DotGrid } from "./rb";
 
 // Fixed full-page dot field (React Bits DotGrid, WebGL).
@@ -11,7 +12,7 @@ export default function Background() {
 
   useEffect(() => {
     const q = () =>
-      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      !motionReduced() &&
       window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
       window.innerWidth >= 900;
     const upd = () => setLive(q());
