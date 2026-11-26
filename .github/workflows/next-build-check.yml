@@ -1,0 +1,37 @@
+name: Next.js build check (no deploy)
+on:
+  push:
+    branches: [portfolio-next-preview]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore images
+        run: |
+          mkdir -p site/images
+          for f in site/images-b64/*.b64; do
+            base64 -d "$f" > "site/images/$(basename "$f" .b64)"
+          done
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portfolio-next/package-lock.json
+      - name: Build
+        working-directory: portfolio-next
+        env:
+          NEXT_PUBLIC_BASE_PATH: /preview-next
+        run: |
+          mkdir -p public/images
+          cp ../site/images/* public/images/
+          npm ci
+          npm run build
+          test -f out/index.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: next-out
+          path: portfolio-next/out
