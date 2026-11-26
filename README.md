@@ -2,6 +2,12 @@
 
 Personal portfolio of Hady Sleam, a backend-focused developer (Node.js, Laravel, SQL) and third-year Physics and Computer Science student. Live site: https://hadysleam-afk.github.io/
 
+## Video walkthrough
+
+[Watch the portfolio video on YouTube](https://youtu.be/jjIy2_hu-pY): "Hady Sleam | Backend Developer Portfolio | Node.js, Laravel & SQL".
+
+The video is a short tour of this site and the projects on it. The demo projects are labeled as demos, in the video and on the site.
+
 ## What this is
 
 - A single-page portfolio with sections for selected work, stack, services and contact.
