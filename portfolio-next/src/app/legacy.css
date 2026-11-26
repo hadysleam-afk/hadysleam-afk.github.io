@@ -287,12 +287,10 @@ body.loaded .stats{animation:hiUp .9s ease .95s forwards}
   .cell{border-inline-end:0!important;border-bottom:1px solid var(--line)}
   .cell:last-child{border-bottom:0}
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .rv{opacity:1;transform:none}
-  .hi,.name.hi,.hero-right,.stats{opacity:1!important;transform:none!important}
-  .name.hi{transform:rotate(-1.2deg)!important}
-}
+html[data-motion="off"] *{animation:none!important;transition:none!important}
+html[data-motion="off"] .rv{opacity:1;transform:none}
+html[data-motion="off"] .hi,html[data-motion="off"] .name.hi,html[data-motion="off"] .hero-right,html[data-motion="off"] .stats{opacity:1!important;transform:none!important}
+html[data-motion="off"] .name.hi{transform:rotate(-1.2deg)!important}
 
 /* ===== v3: motion + imagery ===== */
 html{scroll-padding-top:70px}
@@ -396,7 +394,7 @@ nav.hide{transform:translateY(-100%)}
 @media(max-width:980px){.hero{padding-top:84px}.mega{top:auto}}
 .mega,.mega span{font-family:'Anton',sans-serif}
 .mini .tag{display:inline-block;margin-bottom:12px}
-@media(prefers-reduced-motion:reduce){.mega span{animation:none}.slides img.on{animation:none}}
+html[data-motion="off"] .mega span,html[data-motion="off"] .slides img.on{animation:none}
 @media(min-width:1800px){.wrap,.nav-in{max-width:1480px}.hero-grid{gap:80px}.portrait-card img{height:540px}.mega{font-size:min(15.6vw,270px)}h2{font-size:clamp(34px,3.6vw,72px)}.hero-desc,.about-txt p,.proj p{font-size:18px}}
 .slides{background:#06060a}.slides img{object-fit:contain;object-position:center}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.04)}}
@@ -433,14 +431,12 @@ header.hero{isolation:isolate}
 .proj::before,.mini::before,.cell::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .3s;
   background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,59,59,.14),transparent 60%)}
 @media(hover:hover) and (pointer:fine){.proj:hover::before,.mini:hover::before,.cell:hover::before{opacity:1}}
-@media(prefers-reduced-motion:no-preference){
-  .aurora i:nth-child(1){animation:aur1 16s ease-in-out infinite alternate}
-  .aurora i:nth-child(2){animation:aur2 19s ease-in-out infinite alternate}
-  .aurora i:nth-child(3){animation:aur1 23s ease-in-out infinite alternate-reverse}
-  @keyframes aur1{to{transform:translate(8vw,6vh) scale(1.15)}}
-  @keyframes aur2{to{transform:translate(-9vw,-4vh) scale(1.1)}}
-}
-@media(prefers-reduced-motion:reduce){.aurora i{animation:none}}
+html:not([data-motion="off"]) .aurora i:nth-child(1){animation:aur1 16s ease-in-out infinite alternate}
+html:not([data-motion="off"]) .aurora i:nth-child(2){animation:aur2 19s ease-in-out infinite alternate}
+html:not([data-motion="off"]) .aurora i:nth-child(3){animation:aur1 23s ease-in-out infinite alternate-reverse}
+@keyframes aur1{to{transform:translate(8vw,6vh) scale(1.15)}}
+@keyframes aur2{to{transform:translate(-9vw,-4vh) scale(1.1)}}
+html[data-motion="off"] .aurora i{animation:none}
 
 /* lang-specific spans (so React Bits text can switch language) */
 .l-ar{display:none}
@@ -460,3 +456,30 @@ header.hero{isolation:isolate}
 .chip{animation:none!important;backdrop-filter:none!important}
 /* Arabic: letter dots (like the final ي) sit below the baseline, so give the name box room */
 [dir="rtl"] .name{line-height:1.45;padding:8px 20px 22px}
+
+/* ===== motion toggle ===== */
+.motion-btn{display:inline-flex;align-items:center;gap:7px;background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:700;padding:8px 11px;cursor:pointer;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;transition:.2s}
+.motion-btn::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.motion-btn .st::after{content:"OFF"}
+html:not([data-motion="off"]) .motion-btn{border-color:var(--red);color:var(--text)}
+html:not([data-motion="off"]) .motion-btn::before{background:var(--red);box-shadow:0 0 8px var(--red)}
+html:not([data-motion="off"]) .motion-btn .st::after{content:"ON"}
+.motion-btn:hover{border-color:var(--red)}
+.motion-btn:focus-visible,.lang-btn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media(max-width:520px){.motion-btn{padding:8px 8px}.motion-btn .lbl{display:none}}
+/* ===== v5: perceptible, cheap motion (transform/opacity only) ===== */
+html:not([data-motion="off"]) .proj,html:not([data-motion="off"]) .mini{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s}
+@media(hover:hover) and (pointer:fine){
+  html:not([data-motion="off"]) .proj:hover,html:not([data-motion="off"]) .mini:hover{transform:translateY(-6px)}
+  html:not([data-motion="off"]) .btn{transition:transform .25s,box-shadow .25s}
+  html:not([data-motion="off"]) .btn:hover{box-shadow:0 10px 30px -8px rgba(255,59,59,.55)}
+}
+html:not([data-motion="off"]) .btn:active{transform:scale(.96)}
+
+/* intro curtain */
+.curtain{position:fixed;inset:0;z-index:9999;background:#07070a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;pointer-events:none}
+.curtain .cur-l{font-family:'Anton',sans-serif;font-size:clamp(64px,18vw,180px);color:#f4f4f6;letter-spacing:.02em;line-height:1;overflow:hidden}
+.curtain .cur-n{font-family:var(--mono);font-size:14px;letter-spacing:.2em;color:var(--red)}
+.curtain .cur-bar{width:min(260px,60vw);height:2px;background:#1c1c26;overflow:hidden}
+.curtain .cur-bar i{display:block;height:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
+html[data-motion="off"] .curtain{display:none}

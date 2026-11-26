@@ -7,6 +7,7 @@
  * https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md).
  */
 'use client';
+import { motionReduced } from '../../lib/motion';
 
 import { useEffect, useRef } from 'react';
 
@@ -224,7 +225,7 @@ const DotGrid = ({
     gl.vertexAttribDivisor(2, 1);
     gl.bindVertexArray(null);
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = motionReduced();
     const view = { width: 0, height: 0, left: 0, top: 0, ratio: 1 };
     const grid = { count: 0, cols: 1, rows: 1, cell: 1, centerX: 0, centerY: 0, reach: 1 };
     let rest = new Float32Array(0);

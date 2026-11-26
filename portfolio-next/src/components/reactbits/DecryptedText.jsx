@@ -7,6 +7,7 @@
  * https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md).
  */
 'use client';
+import { motionReduced } from '../../lib/motion';
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'motion/react';
@@ -21,7 +22,7 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
 const isSpace = char => /\s/.test(char);
 
 const prefersReducedMotion = () =>
-  typeof window !== 'undefined' && (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false);
+  typeof window !== 'undefined' && motionReduced();
 
 const glyphWidths = new Map();
 let measureContext = null;
@@ -577,4 +578,4 @@ export default function DecryptedText({
       </span>
     </motion.span>
   );
-          }
+}
