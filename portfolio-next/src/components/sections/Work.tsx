@@ -39,7 +39,7 @@ export default function Work() {
         <div className="note" data-en="DEMO: the chat runs on a simulated WhatsApp channel with sample products. The Meta WhatsApp Cloud API adapter is written but not connected to a live account." data-ar="ديمو: المحادثة بتشتغل على قناة واتساب محاكاة ببيانات منتجات تجريبية. كود الربط مع Meta WhatsApp Cloud API مكتوب لكنه مش موصول بحساب حقيقي.">DEMO: the chat runs on a simulated WhatsApp channel with sample products. The Meta WhatsApp Cloud API adapter is written but not connected to a live account.</div>
         <div className="stack"><span>Node.js</span><span>Express</span><span>WhatsApp Cloud API</span></div>
         <a className="proj-link" href="https://github.com/hadysleam-afk/whatsapp-store-assistant" target="_blank" rel="noopener" data-en="View on GitHub →" data-ar="شوفه على GitHub ←">View on GitHub &rarr;</a>
-        <a className="proj-link" href="https://youtu.be/zXpx02oorpI" target="_blank" rel="noopener" data-en="Watch the demo video →" data-ar="شوف فيديو الديمو ←">Watch the demo video &rarr;</a>
+        <a className="proj-link" href="https://youtu.be/vm7PgQq7-iY" target="_blank" rel="noopener" data-en="Watch the demo video →" data-ar="شوف فيديو الديمو ←">Watch the demo video &rarr;</a>
       </div>
     </article>
     <article className="proj rv">
