@@ -6,7 +6,7 @@ export default function Contact() {
   <div className="wrap">
     <div className="label rv" style={{ textAlign: "center" }} data-en="Direct Connect" data-ar="تواصل مباشر">Direct Connect</div>
     <h2 className="rv" data-en="Let's build something <span class=&quot;r&quot;>real.</span>" data-ar='يلا نبني حاجة <span class="r">حقيقية.</span>'>Let&apos;s build something <span className="r">real.</span></h2>
-    <p className="sec-sub rv" data-en="Available for freelance projects and backend work. Send the idea and I'll reply with a plan." data-ar="متاح لمشاريع الفري لانس وشغل الباك إند. ابعت الفكرة وهرد عليك بخطة.">Available for freelance projects and backend work. Send the idea and I&apos;ll reply with a plan.</p>
+    <p className="sec-sub rv" data-en="Available for freelance projects and backend work. Send me the idea and I'll reply with a clear plan." data-ar="متاح لمشاريع الفري لانس وشغل الباك إند. ابعتلي فكرتك وهرد عليك بخطة واضحة.">Available for freelance projects and backend work. Send me the idea and I&apos;ll reply with a clear plan.</p>
     <div className="mail-row rv">
       <span className="mail" id="mailTxt">hadysleam@gmail.com</span>
       <button className="btn" id="copyBtn" data-en="Copy email" data-ar="انسخ الإيميل">Copy email</button>
