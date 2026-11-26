@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hady Sleam | Backend Developer</title>
+<meta name="description" content="Hady Sleam, backend developer from Egypt. Node.js, Express, PHP, Laravel, SQL. Real backends, honest demos.">
+<meta property="og:title" content="Hady Sleam | Backend Developer">
+<meta property="og:description" content="APIs, databases and the services behind real interfaces. Node.js · Laravel · SQL.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://hadysleam-afk.github.io/images/og-cover.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff3b3b'/%3E%3Ctext x='16' y='23' font-family='Arial Black' font-size='20' font-weight='900' fill='white' text-anchor='middle'%3EH%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07070a;
+  --panel:#0c0c11;
+  --panel2:#101017;
+  --line:#1e1e28;
+  --red:#ff3b3b;
+  --red-dark:#c81e1e;
+  --text:#f4f4f6;
+  --muted:#9a9aa6;
+  --mono:'JetBrains Mono',monospace;
+  --disp:'Anton',sans-serif;
+  --body:'Inter',sans-serif;
+  --script:'Caveat',cursive;
+}
+[dir="rtl"]{--body:'Cairo',sans-serif;--disp:'Cairo',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(255,59,59,.06),transparent),
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:100% 100%,64px 64px,64px 64px;
+}
+::selection{background:var(--red);color:#fff}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(7,7,10,.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:1180px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:28px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:19px;letter-spacing:.06em}
+.logo .sq{width:22px;height:22px;background:var(--red);display:grid;place-items:center;font-family:var(--body);font-weight:800;font-size:13px;color:#fff;border-radius:3px}
+.nav-links{display:flex;gap:22px;margin-inline-start:auto;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--red)}
+.avail{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 8px #3ddc84;animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.4}}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:11px 20px;border:1px solid var(--red);color:#fff;background:var(--red);
+  cursor:pointer;transition:.2s;border-radius:2px;
+}
+.btn:hover{background:var(--red-dark);border-color:var(--red-dark);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--red);color:var(--red);background:rgba(255,59,59,.06)}
+.nav-cta{padding:9px 16px}
+.lang-btn{background:transparent;border:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:700;padding:8px 12px;cursor:pointer;border-radius:2px;letter-spacing:.08em;transition:.2s}
+.lang-btn:hover{border-color:var(--red);color:var(--red)}
+.burger{display:none;background:none;border:1px solid var(--line);color:var(--text);font-size:16px;width:38px;height:38px;cursor:pointer;border-radius:2px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 70px;overflow:hidden}
+.mega{
+  position:absolute;top:88px;left:50%;transform:translateX(-50%);
+  font-family:var(--disp);font-size:clamp(90px,17vw,240px);line-height:1;
+  color:transparent;-webkit-text-stroke:1.5px rgba(255,59,59,.28);
+  letter-spacing:.02em;white-space:nowrap;pointer-events:none;user-select:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;position:relative}
+.hello{font-family:var(--script);font-size:clamp(26px,3vw,36px);color:var(--text);margin-bottom:2px}
+[dir="rtl"] .hello{font-family:var(--body);font-weight:600;font-size:clamp(20px,2.4vw,28px)}
+.name{
+  display:inline-block;background:var(--red);color:#fff;
+  font-family:var(--disp);font-size:clamp(40px,6vw,74px);line-height:1.05;
+  padding:6px 18px 10px;transform:rotate(-1.2deg);letter-spacing:.02em;
+  box-shadow:8px 8px 0 rgba(255,59,59,.18);
+}
+.role{
+  margin-top:22px;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:10px;
+}
+.role::before{content:"";width:9px;height:9px;background:var(--red);flex:none}
+.hero-desc{margin-top:18px;max-width:520px;color:var(--muted);font-size:16px;line-height:1.7}
+.hero-desc b{color:var(--text);font-weight:600}
+.hero-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.hero-right{position:relative}
+.portrait-card{
+  position:relative;border:1px solid var(--line);background:var(--panel);
+  padding:10px;transform:rotate(1.4deg);transition:transform .35s;
+}
+.portrait-card:hover{transform:rotate(0)}
+.portrait-card img{width:100%;height:440px;object-fit:cover;object-position:top;border:1px solid var(--line)}
+.portrait-card::after{
+  content:"";position:absolute;inset:-9px;border:1px solid rgba(255,59,59,.4);
+  pointer-events:none;z-index:-1;
+}
+.portrait-tag{
+  position:absolute;bottom:-14px;inset-inline-end:22px;background:var(--red);color:#fff;
+  font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;
+  padding:7px 14px;text-transform:uppercase;
+}
+.term{
+  position:absolute;bottom:-22px;inset-inline-start:-14px;z-index:2;
+  background:var(--panel2);border:1px solid var(--line);border-radius:6px;
+  font-family:var(--mono);font-size:11.5px;line-height:1.75;padding:14px 16px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);transform:rotate(-2deg);min-width:225px;
+}
+.term .t-head{display:flex;gap:6px;margin-bottom:8px}
+.term .t-head span{width:9px;height:9px;border-radius:50%}
+.term .k{color:#7ee0a3}.term .s{color:#ffb86b}.term .c{color:#5b5b6b}.term .r{color:var(--red)}
+.stats{
+  margin-top:84px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.stat{padding:22px 18px;border-inline-end:1px solid var(--line)}
+.stat:last-child{border-inline-end:0}
+.stat .n{font-family:var(--disp);font-size:26px;color:var(--red);letter-spacing:.02em}
+.stat .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* ---------- MARQUEE ---------- */
+.marquee{border-bottom:1px solid var(--line);overflow:hidden;padding:15px 0;background:var(--panel)}
+.marquee-track{display:flex;gap:44px;width:max-content;animation:mq 26s linear infinite}
+.marquee-track span{font-family:var(--disp);font-size:19px;letter-spacing:.1em;color:var(--muted);white-space:nowrap}
+.marquee-track span i{color:var(--red);font-style:normal;margin-inline-end:44px}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:110px 0}
+.label{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:16px}
+.label::before{content:"// "}
+h2{font-family:var(--disp);font-size:clamp(34px,4.6vw,58px);line-height:1.04;letter-spacing:.01em;margin-bottom:22px}
+.sec-sub{color:var(--muted);max-width:640px;font-size:16px;line-height:1.7;margin-bottom:52px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+.about-txt p{color:var(--muted);font-size:16px;line-height:1.85;margin-bottom:20px}
+.about-txt b{color:var(--text)}
+.about-txt .hl{color:var(--red);font-weight:600}
+blockquote{
+  border-inline-start:3px solid var(--red);padding:6px 0 6px 22px;margin:30px 0;
+  font-size:19px;font-weight:600;line-height:1.55;font-style:italic;
+}
+[dir="rtl"] blockquote{padding:6px 22px 6px 0}
+.about-facts{border:1px solid var(--line);background:var(--panel)}
+.fact{display:flex;justify-content:space-between;gap:14px;padding:17px 20px;border-bottom:1px solid var(--line);font-size:14px}
+.fact:last-child{border-bottom:0}
+.fact .fk{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.fact .fv{font-weight:600;text-align:end}
+.about-photo{margin-top:18px;border:1px solid var(--line);padding:8px;background:var(--panel)}
+.about-photo img{height:250px;width:100%;object-fit:cover;object-position:top}
+
+/* work */
+.proj{
+  border:1px solid var(--line);background:var(--panel);margin-bottom:26px;
+  display:grid;grid-template-columns:1fr 1fr;overflow:hidden;transition:border-color .25s,transform .25s;
+}
+.proj:hover{border-color:rgba(255,59,59,.5)}
+.proj-media{position:relative;min-height:320px;border-inline-end:1px solid var(--line)}
+.proj-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.proj-body{padding:38px 36px;display:flex;flex-direction:column}
+.tag{
+  align-self:flex-start;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--red);border:1px solid rgba(255,59,59,.45);
+  padding:6px 12px;margin-bottom:18px;
+}
+.proj h3{font-family:var(--disp);font-size:clamp(24px,2.6vw,34px);letter-spacing:.01em;margin-bottom:14px}
+.proj p{color:var(--muted);font-size:14.5px;line-height:1.75;margin-bottom:14px}
+.note{font-family:var(--mono);font-size:11.5px;color:#6d6d7a;line-height:1.6;border-top:1px dashed var(--line);padding-top:12px;margin-bottom:20px}
+.stack{font-family:var(--mono);font-size:12px;color:var(--text);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.stack span{border:1px solid var(--line);padding:5px 10px;background:var(--panel2)}
+.proj-link{margin-top:auto;font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--text);display:inline-flex;gap:8px;align-items:center}
+.proj-link:hover{color:var(--red)}
+.solar-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-inline-end:1px solid var(--line)}
+.solar-shots img{width:100%;height:100%;min-height:320px;object-fit:cover;border-inline-end:1px solid var(--line)}
+.solar-shots img:last-child{border-inline-end:0}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.mini{border:1px solid var(--line);background:var(--panel);overflow:hidden;transition:.25s}
+.mini:hover{transform:translateY(-5px);border-color:rgba(255,59,59,.5)}
+.mini img{height:190px;width:100%;object-fit:cover;border-bottom:1px solid var(--line)}
+.mini-in{padding:20px}
+.mini h4{font-family:var(--disp);font-size:19px;letter-spacing:.02em;margin-bottom:8px}
+.mini p{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:14px}
+.mini .stack{margin-bottom:0}
+
+/* matrix */
+.matrix{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line)}
+.cell{padding:30px 26px;border-inline-end:1px solid var(--line);background:var(--panel);transition:background .25s}
+.cell:last-child{border-inline-end:0}
+.cell:hover{background:var(--panel2)}
+.cell .idx{font-family:var(--mono);font-size:11px;color:var(--red);letter-spacing:.14em;margin-bottom:16px}
+.cell h4{font-family:var(--disp);font-size:21px;letter-spacing:.03em;margin-bottom:16px;text-transform:uppercase}
+.cell ul{list-style:none}
+.cell li{font-family:var(--mono);font-size:12.5px;color:var(--muted);padding:7px 0;border-top:1px dashed var(--line)}
+.cell li::before{content:"▸ ";color:var(--red)}
+
+/* services */
+.svc{display:grid;grid-template-columns:60px 1fr 1.2fr 40px;gap:22px;align-items:center;padding:26px 8px;border-bottom:1px solid var(--line);transition:.2s}
+.svc:first-of-type{border-top:1px solid var(--line)}
+.svc:hover{background:var(--panel);padding-inline-start:18px}
+.svc .no{font-family:var(--mono);font-size:13px;color:var(--red)}
+.svc h4{font-family:var(--disp);font-size:clamp(19px,2vw,25px);letter-spacing:.02em;text-transform:uppercase}
+.svc p{color:var(--muted);font-size:14px;line-height:1.6}
+.svc .arw{font-size:20px;color:var(--muted);transition:.2s}
+.svc:hover .arw{color:var(--red);transform:translateX(4px)}
+[dir="rtl"] .svc:hover .arw{transform:translateX(-4px) scaleX(-1)}
+[dir="rtl"] .svc .arw{transform:scaleX(-1)}
+.svc-note{margin-top:26px;font-family:var(--mono);font-size:12px;color:#6d6d7a}
+
+/* contact */
+.contact{text-align:center;padding:130px 0 110px;position:relative}
+.contact h2{font-size:clamp(40px,6vw,84px)}
+.contact h2 .r{color:var(--red)}
+.contact .sec-sub{margin:0 auto 40px}
+.mail-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+.mail{font-family:var(--mono);font-size:15px;border:1px solid var(--line);background:var(--panel);padding:13px 22px;letter-spacing:.03em}
+.socials{margin-top:38px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.soc{
+  font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line);padding:11px 18px;color:var(--muted);transition:.2s;background:var(--panel);
+}
+.soc:hover{color:var(--red);border-color:var(--red);transform:translateY(-2px)}
+
+/* footer status bar */
+.statusbar{
+  border-top:1px solid var(--line);background:var(--panel);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#6d6d7a;
+}
+.statusbar .wrap{display:flex;gap:26px;flex-wrap:wrap;padding-top:13px;padding-bottom:13px;align-items:center}
+.statusbar .ok{color:#3ddc84}
+.statusbar .rr{color:var(--red)}
+.statusbar .sp{margin-inline-start:auto}
+
+/* hero entrance */
+.hi{opacity:0}
+body.loaded .hi{animation:hiUp .8s cubic-bezier(.2,.7,.3,1) forwards}
+body.loaded .hi-1{animation-delay:.05s}
+body.loaded .hi-2{animation-delay:.18s}
+body.loaded .hi-3{animation-delay:.34s}
+body.loaded .hi-4{animation-delay:.5s}
+body.loaded .hi-5{animation-delay:.66s}
+body.loaded .hi-6{animation-delay:.8s}
+@keyframes hiUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+body.loaded .hi-name{animation-name:hiPop}
+@keyframes hiPop{0%{opacity:0;transform:rotate(-1.2deg) scale(.92)}60%{opacity:1;transform:rotate(-1.2deg) scale(1.03)}100%{opacity:1;transform:rotate(-1.2deg) scale(1)}}
+.name.hi{opacity:0}
+body.loaded .name.hi{animation:hiPop .7s cubic-bezier(.2,.7,.3,1) .18s forwards}
+.hero-right{opacity:0}
+body.loaded .hero-right{animation:hiUp .9s cubic-bezier(.2,.7,.3,1) .45s forwards}
+.stats{opacity:0}
+body.loaded .stats{animation:hiUp .9s ease .95s forwards}
+/* button shine */
+.btn{position:relative;overflow:hidden}
+.btn::after{
+  content:"";position:absolute;top:0;left:-80%;width:50%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);transition:left .55s ease;
+}
+.btn:hover::after{left:130%}
+/* cursor glow */
+.glow{
+  position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(255,59,59,.13),transparent 65%);
+  transform:translate(-50%,-50%);left:50%;top:30%;opacity:0;transition:opacity .4s;
+}
+/* terminal typing cursor */
+.t-cursor{display:inline-block;width:7px;height:13px;background:#7ee0a3;vertical-align:-2px;animation:blink .8s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:980px){
+  .hero-grid,.about-grid{grid-template-columns:1fr;gap:44px}
+  .proj{grid-template-columns:1fr}
+  .proj-media{min-height:250px;border-inline-end:0;border-bottom:1px solid var(--line);height:250px}
+  .solar-shots{grid-template-columns:repeat(3,1fr);border-inline-end:0;border-bottom:1px solid var(--line)}
+  .solar-shots img{min-height:150px;height:150px}
+  .matrix{grid-template-columns:1fr 1fr}
+  .cell:nth-child(2){border-inline-end:0}
+  .cell:nth-child(1),.cell:nth-child(2){border-bottom:1px solid var(--line)}
+  .mini-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(2){border-inline-end:0}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}
+  .nav-links,.avail{display:none}
+  .burger{display:block;margin-inline-start:auto}
+  .nav-cta{display:none}
+  .nav-open .nav-links{display:flex;position:absolute;top:62px;left:0;right:0;flex-direction:column;background:var(--panel);border-bottom:1px solid var(--line);padding:20px 24px;gap:16px}
+  .svc{grid-template-columns:44px 1fr;gap:14px}
+  .svc p,.svc .arw{display:none}
+  .term{position:static;transform:none;margin-top:16px;min-width:0}
+  .portrait-card img{height:380px}
+  .mega{top:70px}
+}
+@media(max-width:520px){
+  section{padding:80px 0}
+  .matrix{grid-template-columns:1fr}
+  .cell{border-inline-end:0!important;border-bottom:1px solid var(--line)}
+  .cell:last-child{border-bottom:0}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+<noscript><style>.hi,.hero-right,.stats{opacity:1!important}</style></noscript>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top"><span class="sq">H</span><span data-en="HADY." data-ar="هادي.">HADY.</span></a>
+    <div class="nav-links">
+      <a href="#about" data-en="About" data-ar="عنّي">About</a>
+      <a href="#work" data-en="Work" data-ar="الشغل">Work</a>
+      <a href="#stack" data-en="Stack" data-ar="التقنيات">Stack</a>
+      <a href="#services" data-en="Services" data-ar="الخدمات">Services</a>
+      <a href="#contact" data-en="Contact" data-ar="التواصل">Contact</a>
+    </div>
+    <div class="avail"><span class="dot"></span><span data-en="Available for work" data-ar="متاح للشغل">Available for work</span></div>
+    <button class="lang-btn" id="langBtn" aria-label="Switch language">عربي</button>
+    <a class="btn nav-cta" href="#contact" data-en="Start a project" data-ar="ابدأ مشروعك">Start a project</a>
+    <button class="burger" id="burger" aria-label="Menu">≡</button>
+  </div>
+</nav>
+
+<div class="glow" id="glow" aria-hidden="true"></div>
+
+<header class="hero" id="top">
+  <div class="mega" id="mega">BACKEND</div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hello hi hi-1" data-en="Hello, I'm" data-ar="أهلاً، أنا">Hello, I'm</div>
+        <div class="name hi hi-name" data-en="HADY SLEAM." data-ar="هادي.">HADY SLEAM.</div>
+        <div class="role hi hi-3" data-en="Backend Developer · Node.js · PHP · SQL" data-ar="مطوّر باك إند · Node.js · PHP · SQL">Backend Developer · Node.js · PHP · SQL</div>
+        <p class="hero-desc hi hi-4" data-en="I build the part of the web you don't see: the APIs, databases and services that make an interface show real data instead of mockups. Third-year Physics &amp; Computer Science student, building full-stack projects with a backend heart." data-ar="أنا ببني الجزء اللي مش بتشوفه من الويب: الـAPIs وقواعد البيانات والخدمات اللي بتخلي الواجهة تعرض بيانات حقيقية مش مجرد شكل. طالب سنة تالتة فيزياء وعلوم حاسب، وبشتغل مشاريع full-stack بقلب باك إند.">I build the part of the web you don't see: the APIs, databases and services that make an interface show real data instead of mockups. Third-year Physics &amp; Computer Science student, building full-stack projects with a backend heart.</p>
+        <div class="hero-cta hi hi-5">
+          <a class="btn" href="#work" data-en="View the builds →" data-ar="شوف الشغل ←">View the builds →</a>
+          <a class="btn ghost" href="#about" data-en="About me" data-ar="عنّي">About me</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="term" dir="ltr" aria-hidden="true">
+          <div class="t-head"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></div>
+          <div id="termBody">
+          <div><span class="c">$</span> curl localhost:8000/api</div>
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span class="k">"focus"</span>: <span class="s">"backend"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="k">"stack"</span>: [<span class="s">"node"</span>, <span class="s">"laravel"</span>, <span class="s">"sql"</span>],</div>
+          <div>&nbsp;&nbsp;<span class="k">"status"</span>: <span class="r">"open_to_work"</span></div>
+          <div>}</div>
+          </div>
+        </div>
+        <div class="portrait-card">
+          <img src="images/hady-1.jpg" alt="Hady Sleam" id="portraitImg">
+          <div class="portrait-tag" data-en="Backend · Egypt" data-ar="باك إند · مصر">Backend · Egypt</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat rv"><div class="n">3RD</div><div class="l" data-en="Year, Physics &amp; Computer Science" data-ar="سنة تالتة فيزياء وعلوم حاسب">Year, Physics &amp; Computer Science</div></div>
+      <div class="stat rv"><div class="n">5</div><div class="l" data-en="Selected builds showcased below" data-ar="مشاريع مختارة معروضة تحت">Selected builds showcased below</div></div>
+      <div class="stat rv"><div class="n">100%</div><div class="l" data-en="Backend-first, full-stack capable" data-ar="باك إند أولاً، وقادر على الفل ستاك">Backend-first, full-stack capable</div></div>
+      <div class="stat rv"><div class="n">EG</div><div class="l" data-en="Based in Egypt, remote-friendly" data-ar="من مصر ومتاح للشغل عن بُعد">Based in Egypt, remote-friendly</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mqTrack"></div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="label rv" data-en="Background &amp; Philosophy" data-ar="الخلفية والفلسفة">Background &amp; Philosophy</div>
+    <h2 class="rv" data-en="Real backends. Honest demos." data-ar="باك إند حقيقي. ووضوح كامل.">Real backends. Honest demos.</h2>
+    <div class="about-grid">
+      <div class="about-txt rv">
+        <p data-en="I study Physics and Computer Science at the Faculty of Science, and I build web applications on the side. Physics taught me to model how things actually behave; computer science gave me the tools to build those models into working software." data-ar="بادرس فيزياء وعلوم حاسب في كلية العلوم، وببني تطبيقات ويب جنب الدراسة. الفيزياء علمتني أفهم الحاجة بتحصل إزاي فعلاً، وعلوم الحاسب ادتني الأدوات إن أحوّل الفهم ده لسوفتوير شغال.">I study Physics and Computer Science at the Faculty of Science, and I build web applications on the side. Physics taught me to model how things actually behave; computer science gave me the tools to build those models into working software.</p>
+        <p data-en="My interest is the backend: APIs, databases and the services behind the screen. A dashboard that shows real data is engineering. A dashboard that only looks like it does is decoration. I build the first kind, and I say clearly when something is a demo." data-ar="اهتمامي الأساسي هو الباك إند: الـAPIs وقواعد البيانات والخدمات اللي ورا الشاشة. لوحة تحكم بتعرض بيانات حقيقية دي هندسة. لوحة شكلها بس كده دي ديكور. أنا ببني النوع الأول، وبقول بوضوح لما حاجة تكون ديمو.">My interest is the backend: APIs, databases and the services behind the screen. A dashboard that shows real data is engineering. A dashboard that only looks like it does is decoration. I build the first kind, and I say clearly when something is a demo.</p>
+        <blockquote data-en="&quot;A good interface earns attention. A good backend earns trust.&quot;" data-ar="«الواجهة الكويسة بتجذب الانتباه. الباك إند الكويس بيكسب الثقة.»">&quot;A good interface earns attention. A good backend earns trust.&quot;</blockquote>
+        <p data-en="My most complete project is SolarMind, a solar monitoring and inspection platform with a database, API documentation and a dashboard on top. Alongside it I build interfaces: business sites, dashboards and management systems." data-ar="أكمل مشروع عندي هو SolarMind، منصة لمتابعة وفحص الألواح الشمسية فيها قاعدة بيانات وتوثيق API ولوحة تحكم. ومعاه ببني واجهات: مواقع شركات ولوحات تحكم وأنظمة إدارة.">My most complete project is SolarMind, a solar monitoring and inspection platform with a database, API documentation and a dashboard on top. Alongside it I build interfaces: business sites, dashboards and management systems.</p>
+      </div>
+      <div class="rv">
+        <div class="about-facts">
+          <div class="fact"><span class="fk" data-en="Focus" data-ar="التركيز">Focus</span><span class="fv" data-en="Backend development" data-ar="تطوير الباك إند">Backend development</span></div>
+          <div class="fact"><span class="fk" data-en="Studying" data-ar="الدراسة">Studying</span><span class="fv" data-en="Physics &amp; CS, 3rd year" data-ar="فيزياء وعلوم حاسب، سنة تالتة">Physics &amp; CS, 3rd year</span></div>
+          <div class="fact"><span class="fk" data-en="Based in" data-ar="مقيم في">Based in</span><span class="fv" data-en="Egypt" data-ar="مصر">Egypt</span></div>
+          <div class="fact"><span class="fk" data-en="Open to" data-ar="متاح لـ">Open to</span><span class="fv" data-en="Freelance &amp; backend roles" data-ar="الفري لانس ووظائف الباك إند">Freelance &amp; backend roles</span></div>
+        </div>
+        <div class="about-photo"><img src="images/hady-2.jpg" alt="Hady Sleam portrait"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:40px">
+  <div class="wrap">
+    <div class="label rv" data-en="Selected Work" data-ar="أعمال مختارة">Selected Work</div>
+    <h2 class="rv" data-en="The builds." data-ar="المشاريع.">The builds.</h2>
+    <p class="sec-sub rv" data-en="Every project below is real and inspectable. Demos are labeled as demos. What you see is what you can verify." data-ar="كل مشروع تحت حقيقي وممكن تراجعه بنفسك. الديمو متعلّم إنه ديمو، اللي بتشوفه هو اللي تقدر تتأكد منه.">Every project below is real and inspectable. Demos are labeled as demos. What you see is what you can verify.</p>
+
+    <article class="proj rv">
+      <div class="solar-shots">
+        <img src="images/solarmind-analytics.jpg" alt="SolarMind analytics dashboard">
+        <img src="images/solarmind-physics.jpg" alt="SolarMind physics lab">
+        <img src="images/solarmind-studio.jpg" alt="SolarMind studio view">
+      </div>
+      <div class="proj-body">
+        <span class="tag" data-en="Full-stack demo · Flagship" data-ar="فل ستاك ديمو · المشروع الرئيسي">Full-stack demo · Flagship</span>
+        <h3>SolarMind</h3>
+        <p data-en="Solar-panel monitoring and inspection platform: AI surface-defect classification, panel-condition charts, inspection summaries, service health and full API documentation, backed by a real database." data-ar="منصة لمتابعة وفحص الألواح الشمسية: تصنيف عيوب السطح بالذكاء الاصطناعي، رسوم بيانية لحالة الألواح، ملخصات فحص، صحة الخدمات وتوثيق API كامل، مبنية على قاعدة بيانات حقيقية.">Solar-panel monitoring and inspection platform: AI surface-defect classification, panel-condition charts, inspection summaries, service health and full API documentation, backed by a real database.</p>
+        <div class="note" data-en="DEMO DATA: telemetry is simulated. The AI vision pipeline is real PyTorch (ResNet-50 / EfficientNet); when model weights are absent it runs in a clearly labeled mock mode." data-ar="بيانات تجريبية: القراءات محاكاة. خط الذكاء الاصطناعي حقيقي بـPyTorch (ResNet-50 / EfficientNet)، ولما أوزان الموديل مش موجودة بيشتغل في وضع تجريبي معلّن.">DEMO DATA: telemetry is simulated. The AI vision pipeline is real PyTorch (ResNet-50 / EfficientNet); when model weights are absent it runs in a clearly labeled mock mode.</div>
+        <div class="stack"><span>Full-stack</span><span>Database</span><span>REST API</span><span>Dashboard</span></div>
+        <a class="proj-link" href="https://github.com/hadysleam-afk/SolarMind" target="_blank" rel="noopener" data-en="View on GitHub →" data-ar="شوفه على GitHub ←">View on GitHub →</a>
+      </div>
+    </article>
+
+    <article class="proj rv">
+      <div class="proj-media"><img src="images/reddit-home.jpg" alt="Reddit-style community app"></div>
+      <div class="proj-body">
+        <span class="tag" data-en="Full-stack web app" data-ar="تطبيق ويب فل ستاك">Full-stack web app</span>
+        <h3 data-en="Community Platform" data-ar="منصة مجتمعات">Community Platform</h3>
+        <p data-en="A Reddit-style community application with authentication, communities, text and image posts, comments, likes and user profiles, built on Laravel with policy-based authorization." data-ar="تطبيق مجتمعات بأسلوب Reddit فيه تسجيل دخول ومجتمعات وبوستات نصية وبالصور وتعليقات ولايكات وبروفايلات، مبني بـLaravel مع صلاحيات مبنية على policies.">A Reddit-style community application with authentication, communities, text and image posts, comments, likes and user profiles, built on Laravel with policy-based authorization.</p>
+        <div class="note" data-en="PUBLIC REPO: the code is on GitHub. The app itself is a local demo, not deployed." data-ar="ريبو عام: الكود متاح على GitHub. التطبيق نفسه ديمو محلي مش منشور.">PUBLIC REPO: the code is on GitHub. The app itself is a local demo, not deployed.</div>
+        <div class="stack"><span>PHP</span><span>Laravel</span><span>Blade</span><span>SQL</span></div>
+        <a class="proj-link" href="https://github.com/hadysleam-afk/mini-reddit" target="_blank" rel="noopener" data-en="View on GitHub →" data-ar="شوفه على GitHub ←">View on GitHub →</a>
+      </div>
+    </article>
+
+    <div class="mini-grid">
+      <article class="mini rv">
+        <img src="images/coffee.jpg" alt="Coffee website">
+        <div class="mini-in">
+          <span class="tag" data-en="UI project" data-ar="مشروع واجهة">UI project</span>
+          <h4 data-en="Coffee Website" data-ar="موقع قهوة">Coffee Website</h4>
+          <p data-en="A coffee business site built around clear product presentation and a warm visual style." data-ar="موقع لبراند قهوة مبني على عرض واضح للمنتج وستايل دافي.">A coffee business site built around clear product presentation and a warm visual style.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        </div>
+      </article>
+      <article class="mini rv">
+        <img src="images/student.jpg" alt="Student dashboard">
+        <div class="mini-in">
+          <span class="tag" data-en="UI project · Sample data" data-ar="مشروع واجهة · بيانات تجريبية">UI project · Sample data</span>
+          <h4 data-en="Student Dashboard" data-ar="لوحة إدارة طلاب">Student Dashboard</h4>
+          <p data-en="A student-management dashboard interface with summary cards and data views." data-ar="واجهة لوحة تحكم لإدارة الطلاب فيها كروت ملخصات وعروض بيانات.">A student-management dashboard interface with summary cards and data views.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        </div>
+      </article>
+      <article class="mini rv">
+        <img src="images/pharmacy.jpg" alt="Pharmacy inventory interface">
+        <div class="mini-in">
+          <span class="tag" data-en="UI project" data-ar="مشروع واجهة">UI project</span>
+          <h4 data-en="Pharmacy Inventory" data-ar="مخزون صيدلية">Pharmacy Inventory</h4>
+          <p data-en="An inventory management interface for a pharmacy: stock tables and item details." data-ar="واجهة إدارة مخزون لصيدلية: جداول أصناف وتفاصيل المنتجات.">An inventory management interface for a pharmacy: stock tables and item details.</p>
+          <div class="stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="padding-top:40px">
+  <div class="wrap">
+    <div class="label rv" data-en="The Systems Matrix" data-ar="مصفوفة التقنيات">The Systems Matrix</div>
+    <h2 class="rv" data-en="What I work with." data-ar="الأدوات اللي بشتغل بيها.">What I work with.</h2>
+    <p class="sec-sub rv" data-en="The backend is home. The frontend is fluent." data-ar="الباك إند هو البيت. والفرونت إند بطاقة كاملة.">The backend is home. The frontend is fluent.</p>
+    <div class="matrix rv">
+      <div class="cell">
+        <div class="idx">01 /</div>
+        <h4 data-en="Backend" data-ar="الباك إند">Backend</h4>
+        <ul><li>Node.js</li><li>Express</li><li>PHP</li><li>Laravel</li><li>REST APIs</li></ul>
+      </div>
+      <div class="cell">
+        <div class="idx">02 /</div>
+        <h4 data-en="Data" data-ar="البيانات">Data</h4>
+        <ul><li>SQL databases</li><li data-en="Schema design" data-ar="تصميم قواعد البيانات">Schema design</li><li data-en="API ↔ DB integration" data-ar="ربط الـAPI بقاعدة البيانات">API ↔ DB integration</li></ul>
+      </div>
+      <div class="cell">
+        <div class="idx">03 /</div>
+        <h4 data-en="Frontend" data-ar="الفرونت إند">Frontend</h4>
+        <ul><li>HTML · CSS</li><li>JavaScript</li><li>TypeScript</li><li>React</li></ul>
+      </div>
+      <div class="cell">
+        <div class="idx">04 /</div>
+        <h4 data-en="Workflow" data-ar="أسلوب العمل">Workflow</h4>
+        <ul><li>Git</li><li>GitHub</li><li data-en="API documentation" data-ar="توثيق الـAPI">API documentation</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="padding-top:40px">
+  <div class="wrap">
+    <div class="label rv" data-en="Protocol" data-ar="البروتوكول">Protocol</div>
+    <h2 class="rv" data-en="What I can ship for you." data-ar="إيه اللي أقدر أنفذهولك.">What I can ship for you.</h2>
+    <div class="rv" style="margin-top:34px">
+      <div class="svc"><span class="no">01</span><h4 data-en="Landing pages &amp; business sites" data-ar="صفحات هبوط ومواقع شركات">Landing pages &amp; business sites</h4><p data-en="Clear, responsive sites for a business or product. Fast to load, easy to read." data-ar="مواقع واضحة وسريعة ومتجاوبة لنشاطك أو منتجك.">Clear, responsive sites for a business or product. Fast to load, easy to read.</p><span class="arw">→</span></div>
+      <div class="svc"><span class="no">02</span><h4 data-en="Dashboard interfaces" data-ar="واجهات لوحات التحكم">Dashboard interfaces</h4><p data-en="Data views, summary cards and tables for admin and monitoring screens." data-ar="عروض بيانات وكروت ملخصات وجداول لشاشات الإدارة والمتابعة.">Data views, summary cards and tables for admin and monitoring screens.</p><span class="arw">→</span></div>
+      <div class="svc"><span class="no">03</span><h4 data-en="Backend features &amp; APIs" data-ar="خواص باك إند وAPIs">Backend features &amp; APIs</h4><p data-en="Application logic, endpoints and database-backed features that hold up." data-ar="منطق تطبيقات ونقاط نهاية وخواص مبنية على قواعد بيانات تتحمل الشغل الحقيقي.">Application logic, endpoints and database-backed features that hold up.</p><span class="arw">→</span></div>
+      <div class="svc"><span class="no">04</span><h4 data-en="Frontend ↔ backend wiring" data-ar="ربط الفرونت بالباك إند">Frontend ↔ backend wiring</h4><p data-en="Connecting an existing interface to real services and a real database." data-ar="توصيل واجهة موجودة بخدمات وقاعدة بيانات حقيقية.">Connecting an existing interface to real services and a real database.</p><span class="arw">→</span></div>
+    </div>
+    <p class="svc-note rv" data-en="* Features, deliverables, timeline and revision scope are agreed before work begins." data-ar="* الخواص والتسليمات والمدة ونطاق التعديلات بنتفق عليها قبل بداية أي شغل.">* Features, deliverables, timeline and revision scope are agreed before work begins.</p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="label rv" style="text-align:center" data-en="Direct Connect" data-ar="تواصل مباشر">Direct Connect</div>
+    <h2 class="rv" data-en="Let's build something <span class=&quot;r&quot;>real.</span>" data-ar="يلا نبني حاجة <span class=&quot;r&quot;>حقيقية.</span>">Let's build something <span class="r">real.</span></h2>
+    <p class="sec-sub rv" data-en="Available for freelance projects and backend work. Send the idea and I'll reply with a plan." data-ar="متاح لمشاريع الفري لانس وشغل الباك إند. ابعت الفكرة وهرد عليك بخطة.">Available for freelance projects and backend work. Send the idea and I'll reply with a plan.</p>
+    <div class="mail-row rv">
+      <span class="mail" id="mailTxt">hadysleam@gmail.com</span>
+      <button class="btn" id="copyBtn" data-en="Copy email" data-ar="انسخ الإيميل">Copy email</button>
+      <a class="btn ghost" href="https://wa.me/201008236359" target="_blank" rel="noopener" data-en="WhatsApp" data-ar="واتساب">WhatsApp</a>
+    </div>
+    <div class="socials rv">
+      <a class="soc" href="https://github.com/hadysleam-afk" target="_blank" rel="noopener">GitHub</a>
+      <a class="soc" href="https://www.linkedin.com/in/hady-sleam/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="soc" href="https://www.upwork.com/freelancers/~01c9da43528178eab2" target="_blank" rel="noopener">Upwork</a>
+      <a class="soc" href="https://nafezly.com/u/Hady_sleam" target="_blank" rel="noopener">Nafezly</a>
+    </div>
+  </div>
+</section>
+
+<div class="statusbar">
+  <div class="wrap">
+    <span><span class="ok">●</span> <span data-en="STATUS: ONLINE" data-ar="الحالة: متصل">STATUS: ONLINE</span></span>
+    <span data-en="LOCATION: EGYPT · UTC+2" data-ar="الموقع: مصر · UTC+2">LOCATION: EGYPT · UTC+2</span>
+    <span class="rr" data-en="BACKEND-FIRST" data-ar="باك إند أولاً">BACKEND-FIRST</span>
+    <span class="sp" data-en="© 2026 HADY SLEAM · BUILT BY HAND, NO TEMPLATE" data-ar="© 2026 هادي · معمول بإيدي، مش قالب">© 2026 HADY SLEAM · BUILT BY HAND, NO TEMPLATE</span>
+  </div>
+</div>
+
+<script>
+(function(){
+  // entrance
+  document.body.classList.add('loaded');
+  var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // terminal typing
+  (function typeTerm(){
+    var body=document.getElementById('termBody');
+    if(!body||reduceMotion)return;
+    var nodes=[];
+    (function collect(el){Array.prototype.forEach.call(el.childNodes,function(n){if(n.nodeType===3){nodes.push(n);}else{collect(n);}});})(body);
+    var orig=nodes.map(function(n){return n.textContent;});
+    nodes.forEach(function(n){n.textContent='';});
+    var cursor=document.createElement('span');cursor.className='t-cursor';
+    var ni=0,ci=0;
+    function step(){
+      if(ni>=nodes.length){setTimeout(function(){cursor.remove();},2600);return;}
+      var full=orig[ni];
+      if(ci<full.length){
+        ci++;
+        nodes[ni].textContent=full.slice(0,ci);
+        nodes[ni].parentNode.insertBefore(cursor,nodes[ni].nextSibling);
+        setTimeout(step,full.charAt(ci-1)===' '?8:24);
+      }else{ni++;ci=0;step();}
+    }
+    setTimeout(step,1150);
+  })();
+
+  // cursor glow (desktop pointers only)
+  if(window.matchMedia('(pointer:fine)').matches&&!reduceMotion){
+    var glow=document.getElementById('glow');
+    var gx=window.innerWidth/2,gy=300,tx=gx,ty=gy;
+    window.addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;glow.style.opacity='1';},{passive:true});
+    document.addEventListener('pointerleave',function(){glow.style.opacity='0';});
+    (function loop(){gx+=(tx-gx)*.08;gy+=(ty-gy)*.08;glow.style.left=gx+'px';glow.style.top=gy+'px';requestAnimationFrame(loop);})();
+  }
+
+  var items=['NODE.JS','EXPRESS','PHP','LARAVEL','SQL','REST APIS','JAVASCRIPT','TYPESCRIPT','REACT','GIT & GITHUB'];
+  var track=document.getElementById('mqTrack');
+  var html='';
+  for(var r=0;r<2;r++){items.forEach(function(t){html+='<span><i>✦</i>'+t+'</span>';});}
+  track.innerHTML=html;
+
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+  },{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  // subtle mega parallax
+  var mega=document.getElementById('mega');
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    if(y<900){mega.style.transform='translateX(-50%) translateY('+(y*.18)+'px)';}
+  },{passive:true});
+
+  // language toggle
+  var lang='en';
+  var btn=document.getElementById('langBtn');
+  btn.addEventListener('click',function(){
+    lang=(lang==='en')?'ar':'en';
+    document.documentElement.lang=lang;
+    document.documentElement.dir=(lang==='ar')?'rtl':'ltr';
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      var v=el.getAttribute('data-'+lang);
+      if(v!==null){el.innerHTML=v;}
+    });
+    btn.textContent=(lang==='ar')?'EN':'عربي';
+    // keep dynamic bits consistent
+    var cb=document.getElementById('copyBtn');
+    cb.textContent=cb.getAttribute('data-'+lang);
+  });
+
+  // copy email
+  var cb=document.getElementById('copyBtn');
+  cb.addEventListener('click',function(){
+    var done=function(){
+      cb.textContent=(lang==='ar')?'تم النسخ ✓':'Copied ✓';
+      setTimeout(function(){cb.textContent=cb.getAttribute('data-'+lang);},1800);
+    };
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText('hadysleam@gmail.com').then(done).catch(done);
+    }else{done();}
+  });
+
+  // mobile menu
+  var nav=document.getElementById('nav');
+  document.getElementById('burger').addEventListener('click',function(){
+    nav.classList.toggle('nav-open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('nav-open');});
+  });
+})();
+</script>
+</body>
+</html>
