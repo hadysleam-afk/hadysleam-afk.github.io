@@ -19,6 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Restore images from base64 text files
+        run: |
+          mkdir -p site/images
+          for f in site/images-b64/*.b64; do
+            base64 -d "$f" > "site/images/$(basename "$f" .b64)"
+          done
+          rm -rf site/images-b64
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
