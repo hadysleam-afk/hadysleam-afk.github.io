@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import Lenis from "lenis";
+import { motionReduced, motionChoice } from "../lib/motion";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -12,7 +13,7 @@ const $$ = <T extends Element = HTMLElement>(s: string, c: ParentNode = document
 
 export default function Behavior() {
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = motionReduced();
     const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     let lang: "en" | "ar" = "en";
     const cleanups: Array<() => void> = [];
@@ -48,6 +49,15 @@ export default function Behavior() {
       if (navigator.clipboard?.writeText) navigator.clipboard.writeText("hadysleam@gmail.com").then(done).catch(done);
       else done();
     });
+
+    const mBtn = $("#motionBtn");
+    if (mBtn) {
+      mBtn.setAttribute("aria-pressed", String(!reduce));
+      on(mBtn, "click", () => {
+        try { localStorage.setItem("motion", reduce ? "on" : "off"); } catch {}
+        location.reload();
+      });
+    }
 
     const nav = $("#nav")!;
     on($("#burger")!, "click", () => nav.classList.toggle("nav-open"));
@@ -127,7 +137,7 @@ export default function Behavior() {
     let tickerFn: ((t: number) => void) | null = null;
 
     if (!reduce) {
-      lenis = new Lenis({ lerp: 0.1, smoothWheel: true, anchors: { offset: -64 } });
+      lenis = new Lenis({ lerp: 0.09, smoothWheel: true, anchors: { offset: -64 } });
       lenis.on("scroll", ScrollTrigger.update);
       tickerFn = (t) => lenis!.raf(t * 1000);
       gsap.ticker.add(tickerFn);
@@ -135,7 +145,7 @@ export default function Behavior() {
 
       ctx = gsap.context(() => {
         // hero intro (elements are visible in CSS; from() hides them only while animating)
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" }, paused: true });
         tl.from(".mega span", { clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "power3.inOut" })
           .from(".hello", { y: 26, opacity: 0, duration: 0.7 }, "-=0.7")
           .from(".name", { scale: 0.9, opacity: 0, duration: 0.7 }, "-=0.55")
@@ -143,9 +153,28 @@ export default function Behavior() {
           .from(".hero-right", { y: 40, opacity: 0, duration: 0.9 }, "-=0.9")
           .from(".stats .stat", { y: 24, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.4");
 
+        // cinematic intro curtain (added by JS only, so content is visible if scripts fail)
+        const cur = document.createElement("div");
+        cur.className = "curtain";
+        cur.setAttribute("aria-hidden", "true");
+        cur.innerHTML = '<div class="cur-l">HADY.</div><div class="cur-n">0</div><div class="cur-bar"><i></i></div>';
+        document.body.appendChild(cur);
+        cleanups.push(() => cur.remove());
+        const cn = $(".cur-n", cur)!, cb = $<HTMLElement>(".cur-bar i", cur)!, cl = $(".cur-l", cur)!;
+        const co = { v: 0 };
+        let started = false;
+        const go = () => { if (started) return; started = true; tl.play(); };
+        const safety = setTimeout(() => { go(); cur.remove(); }, 4200);
+        cleanups.push(() => clearTimeout(safety));
+        gsap.timeline({ onComplete: () => { cur.remove(); clearTimeout(safety); } })
+          .from(cl, { yPercent: 110, duration: 0.7, ease: "power4.out" })
+          .to(co, { v: 100, duration: 0.9, ease: "power2.inOut", onUpdate: () => { cn.textContent = String(Math.round(co.v)); cb.style.transform = "scaleX(" + co.v / 100 + ")"; } }, 0.15)
+          .to(cl, { scale: 1.08, duration: 0.35, ease: "power2.in" })
+          .to(cur, { clipPath: "inset(0 0 100% 0)", duration: 0.85, ease: "power4.inOut", onStart: go }, "-=0.1");
+
         // scroll reveals
         $$(".rv:not(.stat)").forEach((el) => {
-          gsap.from(el, { y: 36, opacity: 0, duration: 0.85, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%", once: true } });
+          gsap.from(el, { y: 64, opacity: 0, scale: 0.97, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 92%", once: true } });
         });
         $$(".matrix li").forEach((el, i) => {
           gsap.from(el, { x: -16, opacity: 0, duration: 0.5, delay: (i % 6) * 0.06, scrollTrigger: { trigger: el, start: "top 94%", once: true } });
@@ -166,6 +195,28 @@ export default function Behavior() {
           start: 0, end: "max",
           onUpdate: (self) => { nav.classList.toggle("hide", self.direction === 1 && self.scroll() > 140 && !nav.classList.contains("nav-open")); },
         });
+        // image reveal (wipe) + visible parallax, works with touch scrolling
+        $$(".proj-media, .about-photo, .portrait-card").forEach((el) => {
+          gsap.from(el, { clipPath: "inset(0 0 100% 0)", duration: 1.1, ease: "power3.inOut", scrollTrigger: { trigger: el, start: "top 88%", once: true } });
+        });
+        // scroll-scrubbed card entrance: tied to the finger/wheel, so it is visible on touch too
+        $$(".proj, .mini").forEach((el) => {
+          gsap.fromTo(el, { y: 90, scale: 0.9, rotateX: 10, transformPerspective: 900, opacity: 0.2 },
+            { y: 0, scale: 1, rotateX: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: el, start: "top 105%", end: "top 55%", scrub: 0.6 } });
+        });
+        $$(".cell").forEach((el, i) => {
+          gsap.from(el, { x: i % 2 ? 40 : -40, opacity: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 94%", once: true } });
+        });
+        // marquee reacts to scroll speed (transform only)
+        const mq = $(".marquee");
+        if (mq) {
+          let skew = 0;
+          const setSk = gsap.quickTo(mq, "skewX", { duration: 0.4, ease: "power3.out" });
+          lenis!.on("scroll", (l: { velocity: number }) => { const v = Math.max(-6, Math.min(6, l.velocity * 0.35)); if (Math.abs(v - skew) > 0.2) { skew = v; setSk(-v); } });
+          ScrollTrigger.create({ trigger: mq, start: "top bottom", end: "bottom top", onLeave: () => setSk(0), onLeaveBack: () => setSk(0) });
+        }
+        // floating portrait (cheap loop, paused off-screen by the hero observer)
+        gsap.to(".hero-right", { y: -10, duration: 2.6, ease: "sine.inOut", yoyo: true, repeat: -1 });
         // gentle section depth on images
         $$(".proj-media img.fit, .about-photo img").forEach((im) => {
           gsap.fromTo(im, { scale: 1.04 }, { scale: 1, ease: "none", scrollTrigger: { trigger: im, start: "top bottom", end: "bottom top", scrub: true } });
