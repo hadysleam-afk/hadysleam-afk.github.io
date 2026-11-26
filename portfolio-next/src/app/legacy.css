@@ -483,3 +483,5 @@ html:not([data-motion="off"]) .btn:active{transform:scale(.96)}
 .curtain .cur-bar{width:min(260px,60vw);height:2px;background:#1c1c26;overflow:hidden}
 .curtain .cur-bar i{display:block;height:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
 html[data-motion="off"] .curtain{display:none}
+
+.curtain .cur-s{font-family:var(--mono);font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--red)}

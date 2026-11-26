@@ -7,7 +7,7 @@ export default function Work() {
   <div className="wrap">
     <div className="label rv" data-en="Selected Work" data-ar="أعمال مختارة">Selected Work</div>
     <h2 className="rv" data-en="The builds." data-ar="المشاريع.">The builds.</h2>
-    <p className="sec-sub rv" data-en="Every project below is real. Where the code is public, it links to GitHub. Demos are labeled as demos." data-ar="كل مشروع تحت حقيقي. اللي كوده منشور عليه لينك GitHub. والديمو متعلّم إنه ديمو.">Every project below is real. Where the code is public, it links to GitHub. Demos are labeled as demos.</p>
+    <p className="sec-sub rv" data-en="Selected projects. Public code links to GitHub. Anything that is a demo, or uses demo data, says so." data-ar="مشاريع مختارة. اللي كوده منشور عليه لينك GitHub. وأي حاجة ديمو أو بتستخدم بيانات تجريبية مكتوب عليها كده بوضوح.">Selected projects. Public code links to GitHub. Anything that is a demo, or uses demo data, says so.</p>
 
     <article className="proj rv">
       <div className="proj-media slider" id="slider">

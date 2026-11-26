@@ -5,7 +5,7 @@ export default function Services() {
 <section id="services" style={{ paddingTop: 40 }}>
   <div className="wrap">
     <div className="label rv" data-en="Protocol" data-ar="البروتوكول">Protocol</div>
-    <h2 className="rv" data-en="What I can ship for you." data-ar="إيه اللي أقدر أنفذهولك.">What I can ship for you.</h2>
+    <h2 className="rv" data-en="What I can build for you." data-ar="إيه اللي أقدر أبنيه ليك.">What I can build for you.</h2>
     <div className="rv" style={{ marginTop: 34 }}>
       <div className="svc"><span className="no">01</span><h4 data-en="Backend features & APIs" data-ar="خواص باك إند وAPIs">Backend features &amp; APIs</h4><p data-en="Application logic, endpoints and database-backed features that hold up." data-ar="منطق تطبيقات ونقاط نهاية وخواص مبنية على قواعد بيانات تتحمل الشغل الحقيقي.">Application logic, endpoints and database-backed features that hold up.</p><span className="arw">&rarr;</span></div>
       <div className="svc"><span className="no">02</span><h4 data-en="Frontend ↔ backend wiring" data-ar="ربط الفرونت بالباك إند">Frontend &harr; backend wiring</h4><p data-en="Connecting an existing interface to real services and a real database." data-ar="توصيل واجهة موجودة بخدمات وقاعدة بيانات حقيقية.">Connecting an existing interface to real services and a real database.</p><span className="arw">&rarr;</span></div>
