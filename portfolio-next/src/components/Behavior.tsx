@@ -153,24 +153,26 @@ export default function Behavior() {
           .from(".hero-right", { y: 40, opacity: 0, duration: 0.9 }, "-=0.9")
           .from(".stats .stat", { y: 24, opacity: 0, duration: 0.6, stagger: 0.1 }, "-=0.4");
 
-        // cinematic intro curtain (added by JS only, so content is visible if scripts fail)
-        const cur = document.createElement("div");
-        cur.className = "curtain";
-        cur.setAttribute("aria-hidden", "true");
-        cur.innerHTML = '<div class="cur-l">HADY.</div><div class="cur-n">0</div><div class="cur-bar"><i></i></div>';
-        document.body.appendChild(cur);
-        cleanups.push(() => cur.remove());
-        const cn = $(".cur-n", cur)!, cb = $<HTMLElement>(".cur-bar i", cur)!, cl = $(".cur-l", cur)!;
-        const co = { v: 0 };
-        let started = false;
-        const go = () => { if (started) return; started = true; tl.play(); };
-        const safety = setTimeout(() => { go(); cur.remove(); }, 4200);
-        cleanups.push(() => clearTimeout(safety));
-        gsap.timeline({ onComplete: () => { cur.remove(); clearTimeout(safety); } })
-          .from(cl, { yPercent: 110, duration: 0.7, ease: "power4.out" })
-          .to(co, { v: 100, duration: 0.9, ease: "power2.inOut", onUpdate: () => { cn.textContent = String(Math.round(co.v)); cb.style.transform = "scaleX(" + co.v / 100 + ")"; } }, 0.15)
-          .to(cl, { scale: 1.08, duration: 0.35, ease: "power2.in" })
-          .to(cur, { clipPath: "inset(0 0 100% 0)", duration: 0.85, ease: "power4.inOut", onStart: go }, "-=0.1");
+        // short decorative intro (not a loader: no progress claim). Shown once per browser; returning visitors skip it.
+        let seen = false;
+        try { seen = localStorage.getItem("introSeen") === "1"; localStorage.setItem("introSeen", "1"); } catch {}
+        if (seen) { tl.play(); } else {
+          const cur = document.createElement("div");
+          cur.className = "curtain";
+          cur.setAttribute("aria-hidden", "true");
+          cur.innerHTML = '<div class="cur-l">HADY.</div><div class="cur-s">Backend developer</div>';
+          document.body.appendChild(cur);
+          cleanups.push(() => cur.remove());
+          const cl = $(".cur-l", cur)!, cs = $(".cur-s", cur)!;
+          let started = false;
+          const go = () => { if (started) return; started = true; tl.play(); };
+          const safety = setTimeout(() => { go(); cur.remove(); }, 3000);
+          cleanups.push(() => clearTimeout(safety));
+          gsap.timeline({ onComplete: () => { cur.remove(); clearTimeout(safety); } })
+            .from(cl, { yPercent: 110, duration: 0.6, ease: "power4.out" })
+            .from(cs, { opacity: 0, y: 10, duration: 0.4 }, "-=0.2")
+            .to(cur, { clipPath: "inset(0 0 100% 0)", duration: 0.75, ease: "power4.inOut", onStart: go }, "+=0.25");
+        }
 
         // scroll reveals
         $$(".rv:not(.stat)").forEach((el) => {
