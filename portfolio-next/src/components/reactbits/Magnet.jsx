@@ -7,6 +7,7 @@
  * https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md).
  */
 'use client';
+import { motionReduced } from '../../lib/motion';
 
 import { useEffect, useRef } from 'react';
 
@@ -121,7 +122,7 @@ const Magnet = ({
     const inner = innerRef.current;
     if (!wrapper || !inner) return undefined;
 
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const reduce = motionReduced();
     const current = { x: 0, y: 0, tiltX: 0, tiltY: 0, scale: 1 };
     const velocity = { x: 0, y: 0, tiltX: 0, tiltY: 0, scale: 0 };
     let active = false;
