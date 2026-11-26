@@ -13,6 +13,7 @@ export default function Nav() {
       <a href="#contact" data-en="Contact" data-ar="التواصل">Contact</a>
     </div>
     <div className="avail"><span className="dot" /><span data-en="Available for work" data-ar="متاح للشغل">Available for work</span></div>
+    <button className="motion-btn" id="motionBtn" type="button" aria-pressed="true" aria-label="Motion effects"><span className="lbl" data-en="Motion" data-ar="الحركة">Motion</span><span className="st" /></button>
     <button className="lang-btn" id="langBtn" aria-label="Switch language">&#1593;&#1585;&#1576;&#1610;</button>
     <a className="btn nav-cta" href="#contact" data-en="Start a project" data-ar="ابدأ مشروعك">Start a project</a>
     <button className="burger" id="burger" aria-label="Menu">&equiv;</button>
