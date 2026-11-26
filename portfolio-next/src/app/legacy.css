@@ -1,3 +1,4 @@
+
 :root{
   --bg:#07070a;
   --panel:#0c0c11;
@@ -457,3 +458,5 @@ header.hero{isolation:isolate}
 .scan{animation:none!important;display:none}
 .cn{animation:none!important}
 .chip{animation:none!important;backdrop-filter:none!important}
+/* Arabic: letter dots (like the final ي) sit below the baseline, so give the name box room */
+[dir="rtl"] .name{line-height:1.45;padding:8px 20px 22px}
