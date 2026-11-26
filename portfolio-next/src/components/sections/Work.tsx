@@ -86,17 +86,6 @@ export default function Work() {
   </div>
 </section>
 
-<section id="video" style={{ paddingTop: 40 }}>
-  <div className="wrap">
-    <div className="label rv" data-en="Portfolio Video" data-ar="فيديو البورتفوليو">Portfolio Video</div>
-    <h2 className="rv" data-en="Watch the walkthrough." data-ar="شاهد الشرح.">Watch the walkthrough.</h2>
-    <p className="sec-sub rv" data-en="A short video tour of this portfolio and the projects in it: a Node.js, Laravel and SQL backend developer's work, with the demo projects labeled as demos." data-ar="فيديو قصير بيعرض البورتفوليو والمشاريع اللي فيه: شغل مطور باك إند بـNode.js وLaravel وSQL، والمشاريع التجريبية مكتوب عليها إنها ديمو.">A short video tour of this portfolio and the projects in it: a Node.js, Laravel and SQL backend developer&apos;s work, with the demo projects labeled as demos.</p>
-    <div className="rv" style={{ position: "relative", width: "100%", maxWidth: 900, aspectRatio: "16 / 9", margin: "24px auto 0" }}>
-      <iframe src="https://www.youtube-nocookie.com/embed/CRE8vbDyhSY" title="Hady Sleam | Backend Developer Portfolio | Node.js, Laravel & SQL" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} />
-    </div>
-    <p className="sec-sub rv" style={{ textAlign: "center" }}><a className="proj-link" href="https://youtu.be/CRE8vbDyhSY" target="_blank" rel="noopener" data-en="Open on YouTube →" data-ar="افتحه على يوتيوب ←">Open on YouTube &rarr;</a></p>
-  </div>
-</section>
 
     </>
   );
