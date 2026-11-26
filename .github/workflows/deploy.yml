@@ -23,6 +23,24 @@ jobs:
             base64 -d "$f" > "site/images/$(basename "$f" .b64)"
           done
           rm -rf site/images-b64
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: portfolio-next/package-lock.json
+      - name: Build Next.js preview (served under /preview-next/ only)
+        working-directory: portfolio-next
+        env:
+          NEXT_PUBLIC_BASE_PATH: /preview-next
+        run: |
+          mkdir -p public/images
+          cp ../site/images/* public/images/
+          npm ci
+          npm run build
+      - name: Add preview next to the untouched root site
+        run: |
+          mkdir -p site/preview-next
+          cp -r portfolio-next/out/. site/preview-next/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
