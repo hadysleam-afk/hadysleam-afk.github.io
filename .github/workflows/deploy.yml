@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy static portfolio to GitHub Pages
 on:
   push:
     branches: [main]
@@ -11,33 +11,16 @@ concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - name: Restore images from base64 text files
-        run: |
-          mkdir -p public/images/work
-          for f in assets/images/*.b64; do
-            n=$(basename "$f" .b64)
-            case "$n" in hady-*) out=public/images/$n;; *) out=public/images/work/$n;; esac
-            base64 -d "$f" > "$out"
-          done
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
       - id: deployment
         uses: actions/deploy-pages@v4
