@@ -44,7 +44,7 @@ export default function Hero() {
     </div>
     <div className="stats">
       <div className="stat rv"><div className="n" data-count="3" data-suf="RD">3RD</div><div className="l" data-en="Year, Physics & Computer Science" data-ar="سنة تالتة فيزياء وعلوم حاسب">Year, Physics &amp; Computer Science</div></div>
-      <div className="stat rv"><div className="n" data-count="5" data-suf="">5</div><div className="l" data-en="Selected builds showcased below" data-ar="مشاريع مختارة معروضة تحت">Selected builds showcased below</div></div>
+      <div className="stat rv"><div className="n" data-count="7" data-suf="">7</div><div className="l" data-en="Selected builds showcased below" data-ar="مشاريع مختارة معروضة تحت">Selected builds showcased below</div></div>
       <div className="stat rv"><div className="n">NODE</div><div className="l" data-en="Node.js, Laravel and SQL, backend first" data-ar="Node.js وLaravel وSQL، باك إند أولاً">Node.js, Laravel and SQL, backend first</div></div>
       <div className="stat rv"><div className="n">EG</div><div className="l" data-en="Based in Egypt, remote-friendly" data-ar="من مصر ومتاح للشغل عن بُعد">Based in Egypt, remote-friendly</div></div>
     </div>
