@@ -54,6 +54,30 @@ export default function Work() {
       </div>
     </article>
 
+    <article className="proj rv">
+      <div className="proj-media framed"><div className="shot" style={{ "--ar": "1280/720" } as React.CSSProperties}><div className="bar" dir="ltr"><span /><span /><span /><em>pharmacare &middot; live demo</em></div><img src={`${B}/images/pharmacare.jpg`} alt="PharmaCare pharmacy dashboard" width="1280" height="720" loading="lazy" /></div></div>
+      <div className="proj-body">
+        <span className="tag" data-en="Full-stack · Live demo" data-ar="فل ستاك · ديمو شغال">Full-stack &middot; Live demo</span>
+        <h3 data-en="PharmaCare — pharmacy inventory & POS" data-ar="PharmaCare — إدارة صيدلية ونقطة بيع">PharmaCare &mdash; pharmacy inventory &amp; POS</h3>
+        <p data-en="Pharmacy management: stock by batch with expiry dates, FEFO selling, point of sale with barcode entry, returns, customers, suppliers, purchase invoices, sales reports with CSV export, and admin/seller roles with hashed passwords. Node.js + SQLite with zero npm dependencies and 16 automated tests." data-ar="نظام إدارة صيدلية: مخزون بتشغيلات وصلاحية، بيع بالأقدم صلاحية أولًا، نقطة بيع بالباركود، مرتجعات، عملاء وموردون وفواتير مشتريات، تقارير مبيعات وتصدير Excel، وصلاحيات مدير وبائع. Node.js + SQLite بدون مكتبات خارجية و16 اختبار آلي.">Pharmacy management: stock by batch with expiry dates, FEFO selling, point of sale with barcode entry, returns, customers, suppliers, purchase invoices, sales reports with CSV export, and admin/seller roles with hashed passwords. Node.js + SQLite with zero npm dependencies and 16 automated tests.</p>
+        <div className="note" data-en="DEMO DATA: the live demo runs on made-up medicines, prices and sales, with a public demo login. Nothing in it is a real pharmacy's record." data-ar="بيانات تجريبية: الديمو شغال على أدوية وأسعار ومبيعات وهمية، وبدخول تجريبي عام. مفيش أي بيانات صيدلية حقيقية.">DEMO DATA: the live demo runs on made-up medicines, prices and sales, with a public demo login. Nothing in it is a real pharmacy&apos;s record.</div>
+        <div className="stack"><span>Node.js</span><span>SQLite</span><span>REST API</span><span>RTL</span></div>
+        <a className="proj-link" href="https://pharmacare-bl0s.onrender.com" target="_blank" rel="noopener" data-en="Open the live demo →" data-ar="افتح الديمو ←">Open the live demo &rarr;</a>
+        <a className="proj-link" href="https://github.com/hadysleam-afk/pharmacare" target="_blank" rel="noopener" data-en="View on GitHub →" data-ar="شوفه على GitHub ←">View on GitHub &rarr;</a>
+      </div>
+    </article>
+    <article className="proj rv">
+      <div className="proj-media framed"><div className="shot" style={{ "--ar": "1280/720" } as React.CSSProperties}><div className="bar" dir="ltr"><span /><span /><span /><em>qawem &middot; live demo</em></div><img src={`${B}/images/qawem.jpg`} alt="Qawem Arabic weekly planner" width="1280" height="720" loading="lazy" /></div></div>
+      <div className="proj-body">
+        <span className="tag" data-en="PWA · Live demo" data-ar="PWA · ديمو شغال">PWA &middot; Live demo</span>
+        <h3 data-en="Qawem — Arabic weekly planner" data-ar="قاوم — مخطط أسبوعي عربي">Qawem &mdash; Arabic weekly planner</h3>
+        <p data-en="Installable Arabic-first weekly planner: accounts and sessions, each user's week saved on the server, offline use after the first visit, day templates and habit suggestions, and light and dark mode. Node.js and vanilla JavaScript, no frontend framework." data-ar="مخطط أسبوعي عربي بيتثبّت على الموبايل: حساب ودخول، خطة كل مستخدم محفوظة على السيرفر، شغل أوفلاين بعد أول زيارة، قوالب يوم واقتراحات ثوابت، ووضع ليلي ونهاري. Node.js وJavaScript من غير أي framework.">Installable Arabic-first weekly planner: accounts and sessions, each user&apos;s week saved on the server, offline use after the first visit, day templates and habit suggestions, and light and dark mode. Node.js and vanilla JavaScript, no frontend framework.</p>
+        <div className="note" data-en="DEMO: the live copy starts empty. Create an account and your own week is saved to it; no real user data is shown." data-ar="ديمو: النسخة المنشورة بتبدأ فاضية. اعمل حساب وخطتك بتتحفظ عليه، ومفيش بيانات مستخدمين حقيقية معروضة.">DEMO: the live copy starts empty. Create an account and your own week is saved to it; no real user data is shown.</div>
+        <div className="stack"><span>Node.js</span><span>PostgreSQL</span><span>PWA</span><span>RTL</span></div>
+        <a className="proj-link" href="https://qawem-2r3q.onrender.com" target="_blank" rel="noopener" data-en="Open the live demo →" data-ar="افتح الديمو ←">Open the live demo &rarr;</a>
+        <a className="proj-link" href="https://github.com/hadysleam-afk/qawem" target="_blank" rel="noopener" data-en="View on GitHub →" data-ar="شوفه على GitHub ←">View on GitHub &rarr;</a>
+      </div>
+    </article>
     <div className="mini-grid">
       <article className="mini rv">
         <div className="mini-media" style={{ "--bg": `url(${B}/images/coffee.jpg)`, "--ar": "1269/936" } as React.CSSProperties}><img src={`${B}/images/coffee.jpg`} alt="Coffee website" width="1269" height="936" loading="lazy" /></div>
@@ -70,15 +94,6 @@ export default function Work() {
           <span className="tag" data-en="UI project · Sample data" data-ar="مشروع واجهة · بيانات تجريبية">UI project &middot; Sample data</span>
           <h4 data-en="Student Dashboard" data-ar="لوحة إدارة طلاب">Student Dashboard</h4>
           <p data-en="A student-management dashboard interface with summary cards and data views." data-ar="واجهة لوحة تحكم لإدارة الطلاب فيها كروت ملخصات وعروض بيانات.">A student-management dashboard interface with summary cards and data views.</p>
-          <div className="stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
-        </div>
-      </article>
-      <article className="mini rv">
-        <div className="mini-media" style={{ "--bg": `url(${B}/images/pharmacy.jpg)`, "--ar": "1205/884" } as React.CSSProperties}><img src={`${B}/images/pharmacy.jpg`} alt="Pharmacy inventory interface" width="1205" height="884" loading="lazy" /></div>
-        <div className="mini-in">
-          <span className="tag" data-en="UI project" data-ar="مشروع واجهة">UI project</span>
-          <h4 data-en="Pharmacy Inventory" data-ar="مخزون صيدلية">Pharmacy Inventory</h4>
-          <p data-en="An inventory management interface for a pharmacy: stock tables and item details." data-ar="واجهة إدارة مخزون لصيدلية: جداول أصناف وتفاصيل المنتجات.">An inventory management interface for a pharmacy: stock tables and item details.</p>
           <div className="stack"><span>HTML</span><span>CSS</span><span>JS</span></div>
         </div>
       </article>
